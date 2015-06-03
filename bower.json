@@ -20,5 +20,8 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "gulp": "~3.9.0"
+  }
 }

@@ -1,0 +1,24 @@
+{
+  "name": "Angular",
+  "version": "0.0.0",
+  "description": "Angular training",
+  "main": "index.html",
+  "moduleType": [
+    "es6"
+  ],
+  "keywords": [
+    "angular"
+  ],
+  "authors": [
+    "Ostap SMolyar"
+  ],
+  "license": "MIT",
+  "homepage": "index.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

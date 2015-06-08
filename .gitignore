@@ -50,3 +50,6 @@ bower_components/
 
 # npm
 node_modules/
+
+# gulp things
+build/

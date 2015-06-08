@@ -16,7 +16,7 @@ var paths = {
 // A gulpfile is just another node program and you can use all packages available on npm
 gulp.task('clean', function(cb) {
     // You can use multiple globbing patterns as you would with `gulp.src`
-    del(['build'], cb);
+    del(['./build'], cb);
 });
 
 gulp.task('scripts', ['clean'], function() {
@@ -36,7 +36,7 @@ gulp.task('images', ['clean'], function() {
     return gulp.src(paths.images)
         // Pass in options to the task
         .pipe(imagemin({optimizationLevel: 5}))
-        .pipe(gulp.dest('build/images'));
+        .pipe(gulp.dest('./build/images'));
 });
 
 // Rerun the task when a file changes

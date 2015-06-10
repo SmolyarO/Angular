@@ -8,36 +8,12 @@ var del = require('del');
 var webserver = require('gulp-webserver');
 
 var paths = {
-    scripts: ['app/scripts/**/*.js', 'bower_components/angular/angular.js', '!app/external/**/*.js'],
+    scripts: ['./app/bower_components/angular/angular.js'],
     images: 'app/images/**/*'
 };
 
-// Not all tasks need to use streams
-// A gulpfile is just another node program and you can use all packages available on npm
-gulp.task('clean', function(cb) {
-    // You can use multiple globbing patterns as you would with `gulp.src`
-    del(['./build'], cb);
-});
 
-gulp.task('scripts', ['clean'], function() {
-    // Minify and copy all JavaScript (except vendor scripts)
-    // with sourcemaps all the way down
-    return gulp.src(paths.scripts)
-        //.pipe(sourcemaps.init())
-        //.pipe(coffee())
-        .pipe(uglify())
-        .pipe(concat('all.min.js'))
-        //.pipe(sourcemaps.write())
-        .pipe(gulp.dest('./build/scripts'));
-});
 
-// Copy all static images
-gulp.task('images', ['clean'], function() {
-    return gulp.src(paths.images)
-        // Pass in options to the task
-        .pipe(imagemin({optimizationLevel: 5}))
-        .pipe(gulp.dest('./build/images'));
-});
 
 // Rerun the task when a file changes
 gulp.task('watch', function() {
@@ -46,17 +22,37 @@ gulp.task('watch', function() {
 });
 
 
+
 gulp.task('webserver', function() {
     gulp.src('app')
         .pipe(webserver({
             livereload: true,
-            directoryListing: true,
-            open: true,
-            path: 'app/',
-            fallback: 'index.html'
+            //directoryListing: true,
+            open: 'index.html',
+            //path: 'app',
+            fallback: 'index.html',
+            directoryListing:
+            {
+                enable: true,
+                path: 'app'
+            }
         }));
 });
 
-// The default task (called when you run `gulp` from cli)
-gulp.task('default', ['watch', 'scripts', 'images', 'webserver']);
+
+/*gulp.task('webserver', function() {
+    gulp.src('app')
+        .pipe(webserver({
+            livereload: true,
+            //directoryListing: true,
+            open: true,
+            //path: 'app/',
+            fallback: 'index.html',
+            directoryListing:{
+            enable: true,
+            path: 'app/'}
+        }));
+});*/
+
+gulp.task('default', ['watch', 'webserver']);
 
